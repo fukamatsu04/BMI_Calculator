@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
+import 'const.dart';
 
 class IconContent extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
@@ -22,10 +22,7 @@ class IconContent extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: AppColors.textMaleFemaleColor,
-          ),
+          style: labelTextStyle,
         ),
       ],
     );

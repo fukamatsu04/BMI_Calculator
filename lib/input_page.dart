@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'const.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,25 +17,27 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColour = AppColors.inactiveCardColour;
-  Color femaleCardColour = AppColors.inactiveCardColour;
+  Color maleCardColour = AppColors.inactiveCardColor;
+  Color femaleCardColour = AppColors.inactiveCardColor;
+
+  int height = 180;
 
   // 1 = male, 2 = female
   void updateColor(GenderType gender) {
     if (gender == GenderType.male) {
-      if (maleCardColour == AppColors.inactiveCardColour) {
-        maleCardColour = AppColors.activeCardColour;
-        femaleCardColour = AppColors.inactiveCardColour;
+      if (maleCardColour == AppColors.inactiveCardColor) {
+        maleCardColour = AppColors.activeCardColor;
+        femaleCardColour = AppColors.inactiveCardColor;
       } else {
-        maleCardColour = AppColors.inactiveCardColour;
+        maleCardColour = AppColors.inactiveCardColor;
       }
     }
     if (gender == GenderType.female) {
-      if (femaleCardColour == AppColors.inactiveCardColour) {
-        femaleCardColour = AppColors.activeCardColour;
-        maleCardColour = AppColors.inactiveCardColour;
+      if (femaleCardColour == AppColors.inactiveCardColor) {
+        femaleCardColour = AppColors.activeCardColor;
+        maleCardColour = AppColors.inactiveCardColor;
       } else {
-        femaleCardColour = AppColors.inactiveCardColour;
+        femaleCardColour = AppColors.inactiveCardColor;
       }
     }
   }
@@ -92,7 +95,42 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: AppColors.containerBackgroundColor,
-                    cardChild: Column(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'HEIGHT',
+                          style: labelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              height.toString(),
+                              style: numberTextStyle,
+                            ),
+                            Text(
+                              'CM',
+                              style: labelTextStyle,
+                            ),
+                          ],
+                        ),
+                        Slider(
+                          value: height.toDouble(),
+                          min: 120.0,
+                          max: 220.0,
+                          activeColor: AppColors.sliderActiveColor,
+                          inactiveColor: AppColors.sliderInactiveColor,
+                          onChanged: (double newValue) {
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          },
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],

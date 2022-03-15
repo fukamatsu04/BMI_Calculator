@@ -21,6 +21,8 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColour = AppColors.inactiveCardColor;
 
   int height = 180;
+  int weight = 60;
+  int age = 19;
 
   // 1 = male, 2 = female
   void updateColor(GenderType gender) {
@@ -41,6 +43,8 @@ class _InputPageState extends State<InputPage> {
       }
     }
   }
+
+  void updateWeight() {}
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +102,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'HEIGHT',
                           style: labelTextStyle,
                         ),
@@ -111,23 +115,29 @@ class _InputPageState extends State<InputPage> {
                               height.toString(),
                               style: numberTextStyle,
                             ),
-                            Text(
+                            const Text(
                               'CM',
                               style: labelTextStyle,
                             ),
                           ],
                         ),
-                        Slider(
-                          value: height.toDouble(),
-                          min: 120.0,
-                          max: 220.0,
-                          activeColor: AppColors.sliderActiveColor,
-                          inactiveColor: AppColors.sliderInactiveColor,
-                          onChanged: (double newValue) {
-                            setState(() {
-                              height = newValue.round();
-                            });
-                          },
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: AppColors.sliderActiveColor,
+                            inactiveTrackColor: AppColors.sliderInactiveColor,
+                            thumbColor: AppColors.sliderActiveColor,
+                            overlayColor: AppColors.overLayColor,
+                          ),
+                          child: Slider(
+                            value: height.toDouble(),
+                            min: 120.0,
+                            max: 220.0,
+                            onChanged: (double newValue) {
+                              setState(() {
+                                height = newValue.round();
+                              });
+                            },
+                          ),
                         )
                       ],
                     ),
@@ -142,13 +152,83 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: AppColors.containerBackgroundColor,
-                    cardChild: Column(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: labelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: numberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: AppColors.containerBackgroundColor,
-                    cardChild: Column(),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: labelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: numberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                }),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -162,6 +242,29 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+// ignore: use_key_in_widget_constructors
+class RoundIconButton extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
+  const RoundIconButton({required this.icon, required this.onPressed});
+  final IconData icon;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPressed,
+      elevation: 0.0,
+      child: Icon(icon),
+      constraints: const BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: const CircleBorder(),
+      fillColor: AppColors.roundIconButtonColor,
     );
   }
 }

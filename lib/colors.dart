@@ -11,4 +11,5 @@ class AppColors {
   static const Color sliderInactiveColor = Color(0xFF8D8E98);
   static const Color overLayColor = Color(0x29EB1555);
   static const Color roundIconButtonColor = Color(0xFF4C4F5E);
+  static const Color resultTextColor = Color(0xFF24D876);
 }

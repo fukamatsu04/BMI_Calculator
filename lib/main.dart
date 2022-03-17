@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'input_page.dart';
 import 'colors.dart';
 import 'results_page.dart';
+import 'calculator_brain.dart';
 
 void main() {
   runApp(BMICalculator());
@@ -19,7 +20,11 @@ class BMICalculator extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => InputPage(),
-        '/resultspage': (context) => ResultsPage(),
+        '/resultspage': (context) => ResultsPage(
+              bmiResult: '',
+              interpretation: '',
+              resultText: '',
+            ),
       },
     );
   }

@@ -6,6 +6,7 @@ import 'reusable_card.dart';
 import 'round_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'bottom_button.dart';
+import 'calculator_brain.dart';
 
 enum GenderType {
   male,
@@ -238,6 +239,9 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButton(
             onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+
               Navigator.pushNamed(context, '/resultspage');
             },
             buttonTitle: 'CALCULATE',

@@ -6,7 +6,8 @@ import 'reusable_card.dart';
 
 // ignore: use_key_in_widget_constructors
 class ResultsPage extends StatelessWidget {
-  ResultsPage(
+  // ignore: use_key_in_widget_constructors
+  const ResultsPage(
       {required this.bmiResult,
       required this.resultText,
       required this.interpretation});
@@ -28,9 +29,9 @@ class ResultsPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
-              child: Text(
+              child: const Text(
                 'Your Result',
                 style: tileTextStyle,
               ),

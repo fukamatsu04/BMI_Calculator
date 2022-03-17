@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'input_page.dart';
 import 'colors.dart';
-import 'results_page.dart';
-import 'calculator_brain.dart';
 
 void main() {
   runApp(BMICalculator());
@@ -17,15 +15,7 @@ class BMICalculator extends StatelessWidget {
         appBarTheme: const AppBarTheme(color: AppColors.appBarColor),
         scaffoldBackgroundColor: AppColors.appBarColor,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => InputPage(),
-        '/resultspage': (context) => ResultsPage(
-              bmiResult: '',
-              interpretation: '',
-              resultText: '',
-            ),
-      },
+      home: InputPage(),
     );
   }
 }
